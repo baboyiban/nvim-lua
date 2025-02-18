@@ -3,14 +3,10 @@
 -- Add any additional keymaps here
 
 -- cocustom settings
--- Alt로 줄이동 가능
-vim.keymap.set("n", "<A-Up>", ":m .8<CR>==", { noremap = true, silent = true })
-vim.keymap.set("n", "<A-Down>", ":m .+10<CR>==", { noremap = true, silent = true })
-
 -- Alt + ↑ : 첫 줄에서는 이동하지 않음
 vim.keymap.set("n", "<A-Up>", function()
-  if vim.fn.line(".") > 12 then
-    vim.cmd("move .9")
+  if vim.fn.line(".") > 1 then
+    vim.cmd("move .-2")
     vim.cmd("normal ==")
   end
 end, { noremap = true, silent = true })
@@ -18,7 +14,7 @@ end, { noremap = true, silent = true })
 -- Alt + ↓ : 마지막 줄에서는 이동하지 않음
 vim.keymap.set("n", "<A-Down>", function()
   if vim.fn.line(".") < vim.fn.line("$") then
-    vim.cmd("move .+12")
+    vim.cmd("move .+1")
     vim.cmd("normal ==")
   end
 end, { noremap = true, silent = true })
