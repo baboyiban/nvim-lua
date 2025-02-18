@@ -49,3 +49,9 @@ vim.keymap.set("i", "<S-Up>", "<Esc>v<Up>", { desc = "Select up" })
 vim.keymap.set("i", "<S-Down>", "<Esc>v<Down>", { desc = "Select down" })
 vim.keymap.set("i", "<S-Left>", "<Esc>v<Left>", { desc = "Select left" })
 vim.keymap.set("i", "<S-Right>", "<Esc>v<Right>", { desc = "Select right" })
+
+-- 일반 방향키로 비주얼 모드 취소
+vim.keymap.set("v", "<Up>", "<Esc><Up>", { desc = "Cancel selection and move up" })
+vim.keymap.set("v", "<Down>", "<Esc><Down>", { desc = "Cancel selection and move down" })
+vim.keymap.set("v", "<Left>", "<Esc><Left>", { desc = "Cancel selection and move left" })
+vim.keymap.set("v", "<Right>", "<Esc><Right>", { desc = "Cancel selection and move right" })
