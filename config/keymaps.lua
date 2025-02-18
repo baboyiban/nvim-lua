@@ -51,3 +51,15 @@ vim.keymap.set("v", "<Up>", "<Esc><Up>", { desc = "Cancel selection and move up"
 vim.keymap.set("v", "<Down>", "<Esc><Down>", { desc = "Cancel selection and move down" })
 vim.keymap.set("v", "<Left>", "<Esc><Left>", { desc = "Cancel selection and move left" })
 vim.keymap.set("v", "<Right>", "<Esc><Right>", { desc = "Cancel selection and move right" })
+
+-- 비주얼 모드에서 Alt + ↑ : 선택된 라인 위로 이동
+vim.keymap.set("v", "<A-Up>", function()
+  vim.cmd("'<,'>move '<-2")
+  vim.cmd("normal gv") -- 이동 후 선택 영역 유지
+end, { noremap = true, silent = true })
+
+-- 비주얼 모드에서 Alt + ↓ : 선택된 라인 아래로 이동
+vim.keymap.set("v", "<A-Down>", function()
+  vim.cmd("'<,'>move '>+1")
+  vim.cmd("normal gv") -- 이동 후 선택 영역 유지
+end, { noremap = true, silent = true })
