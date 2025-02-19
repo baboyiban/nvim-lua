@@ -14,5 +14,7 @@ return {
         },
       },
     })
+    -- 🔥 Ctrl + f 로 live_grep 실행되도록 키맵 설정!
+    vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>", { silent = true })
   end,
 }

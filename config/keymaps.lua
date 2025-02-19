@@ -5,8 +5,8 @@
 -- cocustom settings
 -- Alt + ↑ : 첫 줄에서는 이동하지 않음
 vim.keymap.set("n", "<A-Up>", function()
-  if vim.fn.line(".") > 1 then
-    vim.cmd("move .-2")
+  if vim.fn.line(".") > 3 then
+    vim.cmd("move .0")
     vim.cmd("normal ==")
   end
 end, { noremap = true, silent = true })
@@ -14,7 +14,7 @@ end, { noremap = true, silent = true })
 -- Alt + ↓ : 마지막 줄에서는 이동하지 않음
 vim.keymap.set("n", "<A-Down>", function()
   if vim.fn.line(".") < vim.fn.line("$") then
-    vim.cmd("move .+1")
+    vim.cmd("move .+3")
     vim.cmd("normal ==")
   end
 end, { noremap = true, silent = true })
@@ -22,11 +22,9 @@ end, { noremap = true, silent = true })
 -- <C-a> : 전체 선택
 vim.api.nvim_set_keymap("n", "<C-a>", "ggVG", { noremap = true, silent = true })
 -- <C-c> : 복사
-vim.api.nvim_set_keymap("v", "<C-c>", '"+y', { noremap = true, silent = true })
-
--- Telescope
--- 🔥 Ctrl + f 로 live_grep 실행되도록 키맵 설정!
-vim.keymap.set("n", "<C-f>", "<cmd>Telescope live_grep<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-c>", "y", { noremap = true, silent = true })
+-- <C-v> : 붙여넣기
+vim.api.nvim_set_keymap("n", "<C-v>", "p", { noremap = true, silent = true })
 
 -- 쉬프트 + 화살표로 선택 (드래그 기능)
 vim.keymap.set("n", "<S-Up>", "v<Up>", { desc = "Select up" })
@@ -52,14 +50,10 @@ vim.keymap.set("v", "<Down>", "<Esc><Down>", { desc = "Cancel selection and move
 vim.keymap.set("v", "<Left>", "<Esc><Left>", { desc = "Cancel selection and move left" })
 vim.keymap.set("v", "<Right>", "<Esc><Right>", { desc = "Cancel selection and move right" })
 
--- 비주얼 모드에서 Alt + ↑ : 선택된 라인 위로 이동
-vim.keymap.set("v", "<A-Up>", function()
-  vim.cmd("'<,'>move '<-2")
-  vim.cmd("normal gv") -- 이동 후 선택 영역 유지
-end, { noremap = true, silent = true })
+-- Alt + ↑/↓ : 현재 줄을 위/아래로 이동
+vim.keymap.set("n", "<A-Up>", ":silent! m .-2<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-Down>", ":silent! m .+1<CR>==", { noremap = true, silent = true })
 
--- 비주얼 모드에서 Alt + ↓ : 선택된 라인 아래로 이동
-vim.keymap.set("v", "<A-Down>", function()
-  vim.cmd("'<,'>move '>+1")
-  vim.cmd("normal gv") -- 이동 후 선택 영역 유지
-end, { noremap = true, silent = true })
+-- 여러줄 이동
+vim.keymap.set("v", "<A-Up>", ":silent! m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-Down>", ":silent! m '>+1<CR>gv=gv", { noremap = true, silent = true })
