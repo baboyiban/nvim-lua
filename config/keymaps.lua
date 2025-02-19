@@ -5,8 +5,8 @@
 -- cocustom settings
 -- Alt + ↑ : 첫 줄에서는 이동하지 않음
 vim.keymap.set("n", "<A-Up>", function()
-  if vim.fn.line(".") > 3 then
-    vim.cmd("move .0")
+  if vim.fn.line(".") > 1 then
+    vim.cmd("move .-2")
     vim.cmd("normal ==")
   end
 end, { noremap = true, silent = true })
@@ -14,7 +14,7 @@ end, { noremap = true, silent = true })
 -- Alt + ↓ : 마지막 줄에서는 이동하지 않음
 vim.keymap.set("n", "<A-Down>", function()
   if vim.fn.line(".") < vim.fn.line("$") then
-    vim.cmd("move .+3")
+    vim.cmd("move .+1")
     vim.cmd("normal ==")
   end
 end, { noremap = true, silent = true })
@@ -55,5 +55,5 @@ vim.keymap.set("n", "<A-Up>", ":silent! m .-2<CR>==", { noremap = true, silent =
 vim.keymap.set("n", "<A-Down>", ":silent! m .+1<CR>==", { noremap = true, silent = true })
 
 -- 여러줄 이동
-vim.keymap.set("v", "<A-Up>", ":silent! m '<-2<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("v", "<A-Down>", ":silent! m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-Up>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "<A-Down>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
